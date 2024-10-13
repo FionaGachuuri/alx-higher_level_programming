@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This is '5-rectangle' module that  defines a rectangle. 
+This is '5-rectangle' module that defines a rectangle.
 """
 
 
