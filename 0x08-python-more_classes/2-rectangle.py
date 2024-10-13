@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-"""This module writes a class Rectangle that defines a rectangle
-which we then find its perimeter and area."""
-
-
 class Rectangle:
+    """This module writes a class Rectangle that defines a rectangle
+    which we then find its perimeter and area."""
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
