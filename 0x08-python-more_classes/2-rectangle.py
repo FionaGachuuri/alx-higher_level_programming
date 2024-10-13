@@ -1,7 +1,13 @@
 #!/usr/bin/python3
-class Rectangle:
-    """This module writes a class Rectangle that defines a rectangle
-    which we then find its perimeter and area."""
+"""
+This is '2-rectangle' modulei that computes
+the perimeter and area of a rectangle.
+"""
+
+
+class Rectangle():
+    """representing a rectangle"""
+
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
@@ -12,11 +18,12 @@ class Rectangle:
 
     @width.setter
     def width(self, value):
-        if not isinstance(value, int):
+        if type(value) is not int:
             raise TypeError("width must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("width must be >= 0")
-        self.__width = value
+        else:
+            self.__width = value
 
     @property
     def height(self):
@@ -24,16 +31,20 @@ class Rectangle:
 
     @height.setter
     def height(self, value):
-        if not isinstance(value, int):
+        if type(value) is not int:
             raise TypeError("height must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("height must be >= 0")
-        self.__height = value
+        else:
+            self.__height = value
 
     def area(self):
-        return self.__width * self.__height
+        """find and return the rectangle's area"""
+        return (self.__height * self.__width)
 
     def perimeter(self):
-        if self.__width == 0 or self.__height == 0:
+        """find and return rectangle's perimeter"""
+        if self.__height == 0 or self.__width == 0:
             return 0
-        return 2 * (self.__width + self.__height)
+        else:
+            return 2*(self.__height + self.__width)
