@@ -4,7 +4,7 @@ that inherits fom list."""
 
 
 class MyList(list):
-    """Custom class that inherits the
+    """subclass that inherits from the
     built-in list class."""
     def print_sorted(self):
         """Prints the list in ascending order."""
