@@ -1,0 +1,72 @@
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+
+# Checking for module docstring
+>>> m = __import__('7-base_geometry').__doc__
+>>> len(m) > 1
+True
+
+# Checking for class docstring
+>>> c = __import__('7-base_geometry').BaseGeometry.__doc__
+>>> len(c) > 1
+True
+
+# Checking for method docstring
+>>> mod1 = __import__('7-base_geometry').BaseGeometry.area.__doc__
+>>> len(mod1) > 1
+True
+>>> mod2 = __import__('7-base_geometry').BaseGeometry.integer_validator.__doc__
+>>> len(mod2) > 1
+True
+
+# Checking area failure
+>>> bg.area()
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
+
+# Valid integer input
+>>> bg.integer_validator("valid", 10)
+
+# Invalid integer: 0
+>>> bg.integer_validator("invalid_zero", 0)
+Traceback (most recent call last):
+    ...
+ValueError: invalid_zero must be greater than 0
+
+# Invalid integer: negative
+>>> bg.integer_validator("invalid_negative", -5)
+Traceback (most recent call last):
+    ...
+ValueError: invalid_negative must be greater than 0
+
+# Invalid type: string
+>>> bg.integer_validator("invalid_string", "hello")
+Traceback (most recent call last):
+    ...
+TypeError: invalid_string must be an integer
+
+# Invalid type: float
+>>> bg.integer_validator("invalid_float", 1.5)
+Traceback (most recent call last):
+    ...
+TypeError: invalid_float must be an integer
+
+# No arguments
+>>> bg.integer_validator()
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+# One argument
+>>> bg.integer_validator("single_arg")
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+# Too many arguments
+>>> bg.integer_validator("too_many", 1, 2)
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
