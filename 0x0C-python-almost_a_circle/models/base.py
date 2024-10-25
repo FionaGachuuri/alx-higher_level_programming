@@ -2,7 +2,7 @@
 """Module that defines a class Base
 that manages id attribute."""
 
-
+import csv
 import json
 from os import path
 
@@ -96,3 +96,50 @@ class Base:
             json_string = file.read()
             list_dicts = cls.from_json_string(json_string)
             return [cls.create(**d) for d in list_dicts]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Save list of instances to a CSV file.
+
+        Args:
+            list_objs (list): List of instances to save.
+        """
+        filename = f"{cls.__name__}.csv"
+        
+        with open(filename, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            
+            for obj in list_objs:
+                if cls.__name__ == "Rectangle":
+                    writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                elif cls.__name__ == "Square":
+                    writer.writerow([obj.id, obj.size, obj.x, obj.y])
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Load list of instances from a CSV file.
+
+        Returns:
+            list: List of instances created from CSV file data.
+        """
+        filename = f"{cls.__name__}.csv"
+        
+        # Check if the file exists
+        if not path.isfile(filename):
+            return []
+        
+        # Read from the file and load instances
+        instances = []
+        with open(filename, 'r') as csvfile:
+            reader = csv.reader(csvfile)
+            
+            for row in reader:
+                if cls.__name__ == "Rectangle":
+                    id_, width, height, x, y = map(int, row)
+                    obj = cls(width, height, x, y, id_)
+                elif cls.__name__ == "Square":
+                    id_, size, x, y = map(int, row)
+                    obj = cls(size, x, y, id_)
+                instances.append(obj)
+        
+        return instances
