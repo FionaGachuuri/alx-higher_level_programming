@@ -105,13 +105,14 @@ class Base:
             list_objs (list): List of instances to save.
         """
         filename = f"{cls.__name__}.csv"
-        
+
         with open(filename, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
-            
+
             for obj in list_objs:
                 if cls.__name__ == "Rectangle":
-                    writer.writerow([obj.id, obj.width, obj.height, obj.x, obj.y])
+                    writer.writerow([obj.id, obj.width,
+                                    obj.height, obj.x, obj.y])
                 elif cls.__name__ == "Square":
                     writer.writerow([obj.id, obj.size, obj.x, obj.y])
 
@@ -123,16 +124,14 @@ class Base:
             list: List of instances created from CSV file data.
         """
         filename = f"{cls.__name__}.csv"
-        
-        # Check if the file exists
+
         if not path.isfile(filename):
             return []
-        
-        # Read from the file and load instances
+
         instances = []
         with open(filename, 'r') as csvfile:
             reader = csv.reader(csvfile)
-            
+
             for row in reader:
                 if cls.__name__ == "Rectangle":
                     id_, width, height, x, y = map(int, row)
@@ -141,5 +140,5 @@ class Base:
                     id_, size, x, y = map(int, row)
                     obj = cls(size, x, y, id_)
                 instances.append(obj)
-        
+
         return instances
