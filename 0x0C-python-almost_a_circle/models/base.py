@@ -66,3 +66,17 @@ class Base:
         filename = f"{cls.__name__}.json"
         with open(filename, "w") as file:
             file.write(cls.to_json_string(list_dicts))
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Creates an instance with all attributes already set.
+
+        Args:
+            **dictionary: Key-value pairs representing attributes of the instance.
+
+        Returns:
+            An instance of the class with attributes set.
+        """
+        dummy_instance = cls(1,1)
+        dummy_instance.update(**dictionary)
+        return dummy_instance
