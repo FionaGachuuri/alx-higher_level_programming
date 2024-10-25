@@ -3,7 +3,7 @@
 
 import unittest
 from models.base import Base
-from models.rectangle import Rectangle
+from models.rectangle import Rectangle 
 import os
 import json
 
@@ -55,14 +55,16 @@ class TestBase(unittest.TestCase):
 
     def test_save_to_file_content(self):
         """Test save_to_file with actual list of Base instances."""
-        b1 = Rectangle(1, 2, id=1)  # Replace with appropriate attributes
-        b2 = Rectangle(3, 4, id=2)
-        Base.save_to_file([b1, b2])
+        r1 = Rectangle(1, 2, 0, 0, 1)  # Rectangle with id=1
+        r2 = Rectangle(3, 4, 0, 0, 2)  # Rectangle with id=2
+        Base.save_to_file([r1, r2])
 
-        with open("Rectangle.json", "r") as f:
-            content = f.read()
-            expected_content = json.dumps([b1.to_dictionary(), b2.to_dictionary()])
+        with open("Base.json", "r") as file:
+            content = file.read()
+            expected_content = '[{"id": 1, "width": 1, "height": 2, "x": 0, "y": 0}, {"id": 2, "width": 3, "height": 4, "x": 0, "y": 0}]'
             self.assertEqual(content, expected_content)
+   
+
 
     def tearDown(self):
         """Cleanup created files after each test."""
@@ -72,3 +74,4 @@ class TestBase(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
