@@ -14,13 +14,24 @@ if __name__ == "__main__":
     state_name = sys.argv[4]
 
     # Connect to the MySQL server
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=db_name)
-    
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=username,
+        passwd=password,
+        db=db_name
+        )
+
     # Create a cursor object to interact with the database
     cursor = db.cursor()
 
     # Execute the query to find states matching the state_name
-    query = "SELECT id, name FROM states WHERE name = %s ORDER BY id ASC"
+    query = """
+    SELECT id, name
+    FROM states
+    WHERE name LIKE BINARY = %s
+    ORDER BY id ASC
+    """
     cursor.execute(query, (state_name,))
 
     # Fetch and display results
