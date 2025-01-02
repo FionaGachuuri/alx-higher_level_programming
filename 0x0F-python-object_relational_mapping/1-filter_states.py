@@ -23,7 +23,7 @@ if __name__ == "__main__":
     query = """
     SELECT id, name
     FROM states
-    WHERE nme LIKE 'N%'
+    WHERE name LIKE 'N%'
     ORDER BY id ASC
     """
     cursor.execute(query)
