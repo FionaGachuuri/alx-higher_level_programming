@@ -26,13 +26,13 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     # Execute the query to find states matching the state_name
-    query = """
+    query = ""
     SELECT id, name
     FROM states
-    WHERE name = BINARY %s
-    ORDER BY id ASC
-    """
-    cursor.execute(query, (state_name,))
+    WHERE name LIKE BINARY {}
+    ORDER BY id ASC.format(state_name)
+    ""
+    cursor.execute(query) #,(state_name,))
 
     # Fetch and display results
     results = cursor.fetchall()
