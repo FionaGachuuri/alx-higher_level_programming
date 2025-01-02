@@ -29,7 +29,7 @@ if __name__ == "__main__":
     query = """
     SELECT id, name
     FROM states
-    WHERE name LIKE BINARY %s
+    WHERE name = BINARY %s
     ORDER BY id ASC
     """
     cursor.execute(query, (state_name,))
