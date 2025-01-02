@@ -20,7 +20,7 @@ if __name__ == "__main__":
         user=username,
         passwd=password,
         db=db_name
-        )
+    )
 
     # Create a cursor object to interact with the database
     cursor = db.cursor()
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     query = """
     SELECT id, name
     FROM states
-    WHERE name LIKE BINARY = %s
+    WHERE name LIKE BINARY %s
     ORDER BY id ASC
     """
     cursor.execute(query, (state_name,))
