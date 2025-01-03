@@ -19,7 +19,6 @@ if __name__ == "__main__":
         db=db_name
     )
 
-
     cur = db.cursor()
 
     query = """SELECT * FROM states WHERE name = '{}'
