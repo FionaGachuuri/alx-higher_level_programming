@@ -1,6 +1,3 @@
 #!/bin/bash
-# Sends a JSON POST request to a URL passed as the first argument,
-# then displays the body of the response. The JSON data is read from a file
-# passed as the second argument.
-
+# script that sends a JSON POST request to a URL passed as the first argument, and displays the body of the response.
 curl -s -X POST -H "Content-Type: application/json" -d @"$2" "$1"
